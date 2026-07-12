@@ -1,7 +1,10 @@
 apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
-  name: pull-request
+  name: simple-python-web-app-pull-request
+annotations:
+  pipelinesascode.tekton.dev/on-target-branch: "[main]"
+  pipelinesascode.tekton.dev/on-event: "[pull_request]"
 spec:
   pipelineSpec:
     tasks:
