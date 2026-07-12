@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1
+kind: PipelineRun
+metadata:
+  name: pull-request
+spec:
+  pipelineSpec:
+    tasks:
+    - name: clone
+      taskSpec:
+        steps:
+        - name: clone
+          image: alpine
+          script: |
+            echo "Get the code"
