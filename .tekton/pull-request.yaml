@@ -2,9 +2,10 @@ apiVersion: tekton.dev/v1
 kind: PipelineRun
 metadata:
   name: simple-python-web-app-pull-request
-annotations:
-  pipelinesascode.tekton.dev/on-target-branch: "[main]"
-  pipelinesascode.tekton.dev/on-event: "[pull_request]"
+  namespace: default
+  annotations:
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
 spec:
   pipelineSpec:
     tasks:
@@ -12,6 +13,6 @@ spec:
       taskSpec:
         steps:
         - name: clone
-          image: alpine
+          image: registry.access.redhat.com/ubi10/ubi-minimal:10.2@sha256:b217fa65d8c21058887b18f005f587e47a17dd1281a5196ac88d01724a273dbd
           script: |
             echo "Get the code"
