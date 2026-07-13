@@ -3,9 +3,9 @@ kind: PipelineRun
 metadata:
   name: simple-python-web-app-pull-request
   namespace: default
-annotations:
-  pipelinesascode.tekton.dev/on-target-branch: "[main]"
-  pipelinesascode.tekton.dev/on-event: "[pull_request]"
+  annotations:
+    pipelinesascode.tekton.dev/on-target-branch: "[main]"
+    pipelinesascode.tekton.dev/on-event: "[pull_request]"
 spec:
   pipelineSpec:
     tasks:
