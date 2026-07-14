@@ -14,12 +14,5 @@ spec:
     value: "{{ repo_url }}"
   - name: revision
     value: "{{ revision }}"
-  pipelineSpec:
-    tasks:
-    - name: clone
-      taskSpec:
-        steps:
-        - name: clone
-          image: registry.access.redhat.com/ubi10/ubi-minimal:10.2@sha256:b217fa65d8c21058887b18f005f587e47a17dd1281a5196ac88d01724a273dbd
-          script: |
-            echo "Get the code"
+  pipelineRef:
+    name: build-pipeline
