@@ -11,7 +11,7 @@ metadata:
 spec:
   params:
   - name: git_url
-    value: {{ git_url }}
+    value: {{ repo_url }}
   - name: revision
     value: {{ revision }}
   pipelineSpec:
