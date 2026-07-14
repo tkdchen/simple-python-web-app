@@ -6,7 +6,14 @@ metadata:
   annotations:
     pipelinesascode.tekton.dev/on-target-branch: "[main]"
     pipelinesascode.tekton.dev/on-event: "[pull_request]"
+    pipelinesascode.tekton.dev/on-cel-expression: |
+      event == "pull_request" && target_branch == "main"
 spec:
+  params:
+  - name: git_url
+    value: "{{ repo_url }}"
+  - name: revision
+    value: "{{ revision }}"
   pipelineSpec:
     tasks:
     - name: clone
