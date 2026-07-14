@@ -23,7 +23,7 @@ spec:
           echo "Get the code"
           echo "From repository URL: $GIT_URL"
           echo "Checkout to revision: $REVISION"
-  - name: clone
+  - name: lint
     taskSpec:
       steps:
       - name: lint
