@@ -3,11 +3,31 @@ kind: Pipeline
 metadata:
   name: build-pipeline
 spec:
+  params:
+  - name: git_url
+    type: string
+  - name: revision
+    type: string
   tasks:
   - name: clone
     taskSpec:
       steps:
       - name: clone
+        env:
+        - name: GIT_URL
+          value: $(params.git_url)
+        - name: REVISION
+          value: $(params.revision)
         image: registry.access.redhat.com/ubi10/ubi-minimal:10.2@sha256:b217fa65d8c21058887b18f005f587e47a17dd1281a5196ac88d01724a273dbd
         script: |
           echo "Get the code"
+          echo "From repository URL: $GIT_URL"
+          echo "Checkout to revision: $REVISION"
+      - name: lint
+        image: registry.access.redhat.com/ubi10/ubi-minimal:10.2@sha256:b217fa65d8c21058887b18f005f587e47a17dd1281a5196ac88d01724a273dbd
+        script: |
+          echo "Lint code"
+      - name: unit-tests
+        image: registry.access.redhat.com/ubi10/ubi-minimal:10.2@sha256:b217fa65d8c21058887b18f005f587e47a17dd1281a5196ac88d01724a273dbd
+        script: |
+          echo "Run unit tests"
